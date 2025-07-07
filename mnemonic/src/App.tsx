@@ -1,9 +1,16 @@
 import { FlashcardArray } from "react-quizlet-flashcard";
-import Upload, { type Flashcard } from "./Upload";
-import { useState } from "react";
+import Upload from "./Upload";
+import { useEffect, useState } from "react";
+import loadLocal from "./LoadLocal";
+import type { FlashcardProps } from "./FlashcardHelper";
 
 function App() {
-  const [cards, setCards] = useState<Flashcard[]>([]);
+  const [cards, setCards] = useState<FlashcardProps[]>([]);
+
+  useEffect(() => {
+    loadLocal(setCards);
+  }, []);
+
   return (
     <div
       style={{
@@ -12,7 +19,7 @@ function App() {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
-        gap: "20px", // Optional: adds some space between the upload and flashcards
+        gap: "20px",
       }}
     >
       <Upload setCards={setCards} />

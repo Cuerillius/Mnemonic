@@ -1,28 +1,20 @@
-import type { JSX } from "react";
-import { Flashcard } from "react-quizlet-flashcard";
-
-type Card = {
-  name: string;
-  image: string;
-};
-
-export type Flashcard = {
-  id: number;
-  frontHTML: JSX.Element;
-  backHTML: JSX.Element;
-};
+import {
+  convertToFlashcards,
+  type CardProps,
+  type FlashcardProps,
+} from "./FlashcardHelper";
 
 function Upload({
   setCards,
 }: {
-  setCards: React.Dispatch<React.SetStateAction<Array<Flashcard>>>;
+  setCards: React.Dispatch<React.SetStateAction<Array<FlashcardProps>>>;
 }) {
   function uploadFiles(files: FileList | null) {
     if (!files) return;
-    let cards: Array<Card> = [];
+    let cards: Array<CardProps> = [];
     try {
       for (const file of Array.from(files)) {
-        let card: Card = {
+        let card: CardProps = {
           name: file.name,
           image: URL.createObjectURL(file),
         };
@@ -31,40 +23,7 @@ function Upload({
     } catch (error) {
       console.log(error);
     }
-    convertToFlashcards(cards);
-  }
-
-  function convertToFlashcards(cards: Array<Card>) {
-    const flashcards: Array<Flashcard> = [];
-    try {
-      for (const [index, card] of cards.entries()) {
-        flashcards.push({
-          id: index,
-          frontHTML: (
-            <img
-              src={card.image}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              alt={card.name}
-            />
-          ),
-          backHTML: (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "100%",
-              }}
-            >
-              {card.name}
-            </div>
-          ),
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-    setCards(flashcards);
+    setCards(convertToFlashcards(cards));
   }
   return (
     <input
