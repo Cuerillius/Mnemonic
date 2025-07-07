@@ -1,52 +1,45 @@
-# .github/workflows/deploy.yml
-
 name: Deploy Vite App with Bun to GitHub Pages
 
 on:
-  # Runs on pushes targeting the main branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./mnemonic
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set up Bun
-        # This is the official action to install Bun in a workflow
         uses: oven-sh/setup-bun@v1
 
       - name: Install dependencies with Bun
         run: bun install
 
       - name: Build Vite app with Bun
-        # Use 'bun run' to execute the 'build' script in your package.json
         run: bun run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # The output directory is still 'dist'
-          path: "./dist"
+          path: ./mnemonic/dist
 
-  # Deployment job (This job does not need any changes)
   deploy:
     environment:
       name: github-pages
