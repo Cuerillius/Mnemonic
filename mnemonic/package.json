@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "generate-cards": "bun scripts/generate-card-index.ts",
+    "dev": "bun run generate-cards && vite",
+    "build": "bun run generate-cards && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
