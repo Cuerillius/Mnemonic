@@ -1,6 +1,6 @@
 # .github/workflows/deploy.yml
 
-name: Deploy Vite App to GitHub Pages
+name: Deploy Vite App with Bun to GitHub Pages
 
 on:
   # Runs on pushes targeting the main branch
@@ -16,8 +16,7 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -30,27 +29,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "npm"
+      - name: Set up Bun
+        # This is the official action to install Bun in a workflow
+        uses: oven-sh/setup-bun@v1
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies with Bun
+        run: bun install
 
-      - name: Build Vite app
-        # This command runs your "build" script in package.json and creates the 'dist' folder
-        run: npm run build
+      - name: Build Vite app with Bun
+        # Use 'bun run' to execute the 'build' script in your package.json
+        run: bun run build
 
       - name: Upload artifact
-        # This action packages the 'dist' folder for the deployment job
         uses: actions/upload-pages-artifact@v3
         with:
-          # This must be the output folder from your build step
+          # The output directory is still 'dist'
           path: "./dist"
 
-  # Deployment job
+  # Deployment job (This job does not need any changes)
   deploy:
     environment:
       name: github-pages
