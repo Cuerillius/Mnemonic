@@ -12,19 +12,10 @@ function App() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        gap: "20px",
-      }}
-    >
+    <div className="flex flex-col justify-center items-center h-screen gap-5">
       <Upload setCards={setCards} />
       {cards.length > 0 && (
-        <div>
+        <div className="text-white">
           <FlashcardArray cards={cards} />
         </div>
       )}

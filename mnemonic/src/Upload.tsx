@@ -26,13 +26,20 @@ function Upload({
     setCards(convertToFlashcards(cards));
   }
   return (
-    <input
-      type="file"
-      name="filefield"
-      accept=".jpg, .jpeg, .png"
-      multiple
-      onChange={(e) => uploadFiles(e.target.files)}
-    ></input>
+    <>
+      <label className="text-white " htmlFor="file-upload">
+        Upload Images
+      </label>
+      <input
+        id="file-upload"
+        type="file"
+        name="filefield"
+        accept=".jpg, .jpeg, .png"
+        multiple
+        onChange={(e) => uploadFiles(e.target.files)}
+        className="hidden"
+      />
+    </>
   );
 }
 
