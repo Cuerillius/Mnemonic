@@ -16,7 +16,10 @@ interface FlashcardControls {
 function App() {
   const [cards, setCards] = useState<FlashcardProps[]>([]);
 
+  // see: https://github.com/ABSanthosh/react-quizlet-flashcard?tab=readme-ov-file#cards-with-custom-controlsusing-forwardref-prop
+  // @ts-ignore
   const controlRef = useRef<FlashcardControls>({});
+  // @ts-ignore
   const currentCardFlipRef = useRef<() => void>();
   const [currentCard, setCurrentCard] = useState(1);
 

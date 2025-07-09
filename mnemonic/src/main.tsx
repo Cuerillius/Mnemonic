@@ -13,7 +13,14 @@ createRoot(document.getElementById("root")!).render(
         />
         <h1 className="text-3xl  font-bold">mnemonic</h1>
       </div>
-
+      <div className="absolute top-4 right-4">
+        <div
+          className="p-2 rounded-md border border-gray-600 text-sm text-gray-400 bg-gray-800/50"
+          title="Use arrow keys to navigate between items and Enter to select."
+        >
+          💡 Use your keyboard to navigate
+        </div>
+      </div>
       <App />
     </div>
   </StrictMode>
