@@ -1,34 +1,52 @@
-<p align='center'>
-  <img src='./mnemonic/public/logo.png' alt='Mnemonic' height='100'/>
+<p align="center">
+  <a href="https://paste.photos/">
+    <img src="./mnemonic/public/logo.png" alt="Mnemonic Logo" height="100"/>
+  </a>
 </p>
 
-<h1 align='center'>
-Mnemonic</h1>
+<h1 align="center">Mnemonic</h1>
 
-[Mnemonic](https://paste.photos/) is a website where you can upload images and it makes interactive flashcards out of them.
+[Mnemonic](https://paste.photos/) is a web application that turns your images into interactive flashcards.
 
-This tool was made for those moments where you have a folder full of images. \
-Instead of printing them, cuting them out and writing someting on the back... \
-**You can just upload it to this website.**
+This tool was made for those moments when you have a folder full of images you need to study. Instead of the hassle of printing them, cutting them out, and writing on the back, you can **simply upload them to Mnemonic and start studying instantly.**
 
-![Preview](./mnemonic/public/preview.png)
+![Mnemonic App Preview](./mnemonic/public/preview.png)
 
-## Usage
+## Getting Started
 
-### Development
+Follow these instructions to get a copy of the project up and running on your local machine for development.
 
-Just run and visit http://localhost:5173/Mnemonic/
+### Prerequisites
 
-```bash
-bun run dev
-```
+Make sure you have [Bun](https://bun.sh/) installed on your system.
 
-### Build
+### Installation & Development
 
-To build the App, run
+1. **Clone the repository** (if you haven't already):
+
+   ```bash
+   git clone https://github.com/Cuerillius/Mnemonic
+   cd mnemonic
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   bun install
+   ```
+
+3. **Run the development server:**
+   ```bash
+   bun run dev
+   ```
+   The application will be available at `http://localhost:5173/Mnemonic/`.
+
+## Building for Production
+
+To create a production-ready build of the app, run the following command:
 
 ```bash
 bun run build
 ```
 
-And you will see the generated file in `dist` that ready to be served.
+This will compile the project and place the generated files in the `dist` directory. These files are ready to be deployed to a static web host.

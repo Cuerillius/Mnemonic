@@ -6,6 +6,7 @@ import type { FlashcardProps } from "./FlashcardHelper";
 import { useKeyboardShortcut } from "./KeyboardHandler";
 import { CircleChevronLeft } from "./assets/CircleChevronLeft";
 import { CircleChevronRight } from "./assets/CircleChevronRight";
+import { CircleQuestionMark } from "./assets/CircleQuestionMark";
 
 interface FlashcardControls {
   nextCard: () => void;
@@ -35,6 +36,13 @@ function App() {
     key: " ",
     onKeyPressed: () => currentCardFlipRef.current?.(),
   });
+  useKeyboardShortcut({
+    key: "r",
+    onKeyPressed: () => {
+      controlRef.current?.resetArray();
+      setCurrentCard(1);
+    },
+  });
 
   useEffect(() => {
     loadLocal(setCards);
@@ -42,7 +50,38 @@ function App() {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen gap-5">
-      <Upload setCards={setCards} />
+      <div className="absolute top-5 right-5 flex items-center gap-4">
+        <Upload setCards={setCards} />
+        <div className="relative group">
+          <CircleQuestionMark className="w-8 h-8 fill-current text-[hsl(18,100%,50%)] cursor-pointer" />
+          <div className="absolute hidden group-hover:flex flex-col gap-2 right-0 mt-4 p-4 bg-black text-white rounded-lg shadow-xl w-max text-sm border border-[hsl(12,56%,34%)]">
+            <p className="flex items-center gap-2">
+              <kbd className="font-sans font-semibold py-1 px-2 bg-[hsl(12,56%,24%)] text-[hsl(12,56%,84%)] rounded-md border-b-2 border-[hsl(12,56%,34%)]">
+                Space
+              </kbd>
+              <span> Flip card</span>
+            </p>
+            <p className="flex items-center gap-2">
+              <kbd className="font-sans font-semibold py-1 px-2 bg-[hsl(12,56%,24%)] text-[hsl(12,56%,84%)] rounded-md border-b-2 border-[hsl(12,56%,34%)]">
+                →
+              </kbd>
+              <span> Next card</span>
+            </p>
+            <p className="flex items-center gap-2">
+              <kbd className="font-sans font-semibold py-1 px-2 bg-[hsl(12,56%,24%)] text-[hsl(12,56%,84%)] rounded-md border-b-2 border-[hsl(12,56%,34%)]">
+                ←
+              </kbd>
+              <span> Previous card</span>
+            </p>
+            <p className="flex items-center gap-2">
+              <kbd className="font-sans font-semibold py-1 px-2 bg-[hsl(12,56%,24%)] text-[hsl(12,56%,84%)] rounded-md border-b-2 border-[hsl(12,56%,34%)]">
+                R
+              </kbd>
+              <span> Reset Cards</span>
+            </p>
+          </div>
+        </div>
+      </div>
       {cards.length > 0 && (
         <div
           className="text-white"
