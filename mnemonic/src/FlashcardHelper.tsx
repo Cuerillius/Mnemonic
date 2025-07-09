@@ -11,12 +11,27 @@ export type FlashcardProps = {
   backHTML: JSX.Element;
 };
 
+export function shuffleFlashcards(flashcards: FlashcardProps[]) {
+  let currentIndex = flashcards.length;
+
+  while (currentIndex != 0) {
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    [flashcards[currentIndex], flashcards[randomIndex]] = [
+      flashcards[randomIndex],
+      flashcards[currentIndex],
+    ];
+  }
+  return flashcards;
+}
+
 export function convertToFlashcards(cards: Array<CardProps>) {
   const flashcards: Array<FlashcardProps> = [];
   try {
     for (const [index, card] of cards.entries()) {
       let name = card.name
-        .replace(/\.(jpg|jpeg|png)$/i, "")
+        .replace(/\.(jpg|jpeg|png|svg)$/i, "")
         .replace(/[-_.]/g, " ");
 
       flashcards.push({

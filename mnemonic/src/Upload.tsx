@@ -1,13 +1,16 @@
 import {
   convertToFlashcards,
+  shuffleFlashcards,
   type CardProps,
   type FlashcardProps,
 } from "./FlashcardHelper";
 
 function Upload({
   setCards,
+  resetCardPosition,
 }: {
   setCards: React.Dispatch<React.SetStateAction<Array<FlashcardProps>>>;
+  resetCardPosition: () => void;
 }) {
   function uploadFiles(files: FileList | null) {
     if (!files) return;
@@ -24,6 +27,7 @@ function Upload({
       console.log(error);
     }
     setCards(convertToFlashcards(cards));
+    resetCardPosition();
   }
   return (
     <div className="p-[3px] relative">
