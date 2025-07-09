@@ -1,6 +1,5 @@
 import {
   convertToFlashcards,
-  shuffleFlashcards,
   type CardProps,
   type FlashcardProps,
 } from "./FlashcardHelper";
