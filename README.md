@@ -1,12 +1,12 @@
 <p align="center">
-  <a href="https://paste.photos/">
+  <a href="https://cuerillius.github.io/Mnemonic/">
     <img src="./mnemonic/public/logo.png" alt="Mnemonic Logo" height="100"/>
   </a>
 </p>
 
 <h1 align="center">Mnemonic</h1>
 
-[Mnemonic](https://paste.photos/) is a web application that turns your images into interactive flashcards.
+[Mnemonic](https://cuerillius.github.io/Mnemonic/) is a web application that turns your images into interactive flashcards.
 
 This tool was made for those moments when you have a folder full of images you need to study. Instead of the hassle of printing them, cutting them out, and writing on the back, you can **simply upload them to Mnemonic and start studying instantly.**
 
